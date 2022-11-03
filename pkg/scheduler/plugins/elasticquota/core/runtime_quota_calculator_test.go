@@ -300,7 +300,7 @@ func TestRuntimeQuotaCalculator_NeedUpdateOneGroupRequest(t *testing.T) {
 
 func TestRuntimeQuotaCalculator_UpdateOneGroupRequest(t *testing.T) {
 	qtw := createRuntimeQuotaCalculator()
-	totalResource := createResourceList(50, 5000)
+	totalResource := createResourceList(150, 15000)
 	qtw.setClusterTotalResource(totalResource)
 	quotaCount := 5
 	for i := 1; i <= quotaCount; i++ {
@@ -375,7 +375,7 @@ func TestRuntimeQuotaCalculator_UpdateOneGroupRuntimeQuota(t *testing.T) {
 	assert.Equal(t, request, test1.CalculateInfo.Runtime)
 
 	qtw.updateOneGroupRuntimeQuota(test2)
-	assert.Equal(t, test2.CalculateInfo.AutoScaleMin, test2.CalculateInfo.Runtime)
+	assert.Equal(t, createResourceList(40, 400), test2.CalculateInfo.Runtime)
 }
 
 func TestRuntimeQuotaCalculator_UpdateOneGroupRuntimeQuota2(t *testing.T) {
